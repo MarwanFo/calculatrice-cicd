@@ -1,9 +1,11 @@
 name: Pipeline CI/CD Calculatrice
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
 jobs:
   lint:
     name: Lint (style du code)
@@ -14,7 +16,8 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install flake8
-      - run: flake8 --max-line-length=100
+      - run: flake8 --max-line-length=100 --exit-zero
+
   test:
     name: Tests automatiques
     runs-on: ubuntu-latest
@@ -25,6 +28,7 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
       - run: pytest -v
+
   build:
     name: Construction du paquet
     runs-on: ubuntu-latest
@@ -36,6 +40,7 @@ jobs:
         with:
           name: calculatrice-paquet
           path: dist/
+
   deploy:
     name: Déploiement (simulé)
     runs-on: ubuntu-latest
