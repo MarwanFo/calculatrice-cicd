@@ -21,5 +21,4 @@ def test_division():
 def test_division_par_zero():
     with pytest.raises(ValueError):
         division(5, 0)
-
         
